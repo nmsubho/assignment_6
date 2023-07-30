@@ -47,16 +47,16 @@ const RootLayout = ({ children }) => {
         }}
       >
         <div className="demo-logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          items={[
-            {
-              key: "1",
-              label: <Link href="/pc-builder">PC Builder</Link>,
-            },
-          ]}
-        />
+        <Link href="/">
+          <Button type="link" className="text-gray-400 hover:text-white">
+            Home
+          </Button>
+        </Link>
+        <Link href="/pc-builder">
+          <Button type="link" className="text-gray-400 hover:text-white">
+            PC Builder
+          </Button>
+        </Link>
         <Dropdown menu={{ items }} placement="bottomLeft" arrow theme="dark">
           <Button type="link" className="text-gray-400 hover:text-white">
             Category

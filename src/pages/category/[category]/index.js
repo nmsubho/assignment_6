@@ -28,12 +28,7 @@ const Product = ({ products }) => {
               style={{
                 width: 300,
               }}
-              cover={
-                <img
-                  alt="example"
-                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                />
-              }
+              cover={<img alt="example" src={product.image} />}
               actions={[
                 <SettingOutlined key="setting" />,
                 <EditOutlined key="edit" />,
