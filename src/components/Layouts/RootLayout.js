@@ -1,8 +1,10 @@
 import { Breadcrumb, Button, Dropdown, Layout, Menu, theme } from "antd";
 import Link from "next/link";
 const { Header, Content, Footer } = Layout;
+import { useSession, signOut } from "next-auth/react";
 
 const RootLayout = ({ children }) => {
+  const { data: session } = useSession();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -62,6 +64,21 @@ const RootLayout = ({ children }) => {
             Category
           </Button>
         </Dropdown>
+        {session?.user ? (
+          <Button
+            type="link"
+            className="text-gray-400 hover:text-white"
+            onClick={() => signOut()}
+          >
+            Sign Out
+          </Button>
+        ) : (
+          <Link href="/sign-in">
+            <Button type="link" className="text-gray-400 hover:text-white">
+              Sign In
+            </Button>
+          </Link>
+        )}
       </Header>
       <Content
         style={{

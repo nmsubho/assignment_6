@@ -41,10 +41,10 @@ export async function getStaticPaths() {
   const res = await fetch(`${process.env.API_URL}`);
   const products = await res.json();
 
-  const paths = products?.data.map((product) => ({
+  const paths = products?.data?.map((product) => ({
     params: { category: product.category },
   }));
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 }
 
 Product.getLayout = function getLayout(page) {
