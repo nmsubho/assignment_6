@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import category from "@/utils/category";
 import { Button, Card } from "antd";
 import Link from "next/link";
