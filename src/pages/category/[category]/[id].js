@@ -108,7 +108,7 @@ Category.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const res = await fetch(`${process.env.API_URL}/${context.params.id}`);
   const product = await res.json();
   if (!product) {
@@ -121,20 +121,5 @@ export async function getStaticProps(context) {
     props: {
       product,
     },
-    revalidate: 3600 * 3,
   };
-}
-
-export async function getStaticPaths() {
-  const res = await fetch(`${process.env.API_URL}`);
-  const products = await res.json();
-
-  const paths = products.data.map((product) => ({
-    params: {
-      id: `${product.id}`,
-      category: product?.category,
-    },
-  }));
-
-  return { paths, fallback: true };
 }
