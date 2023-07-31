@@ -1,10 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
+import { AppContext } from "@/config/app.context";
 import category from "@/utils/category";
 import { Button, Card } from "antd";
 import Link from "next/link";
+import { useContext } from "react";
 const { Meta } = Card;
 
 const ProductCard = ({ product }) => {
+  const { builderProducts, setBuilderProducts } = useContext(AppContext);
+
+  const handleAddToBuilder = (product) => {
+    setBuilderProducts([...builderProducts, product]);
+  };
+
   return (
     <div>
       <Card
@@ -19,6 +27,7 @@ const ProductCard = ({ product }) => {
               type="link"
               className="text-orange-400"
               disabled={product.status === "Out of Stock"}
+              onClick={() => handleAddToBuilder(product)}
             >
               Add to Builder
             </Button>

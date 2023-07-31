@@ -1,16 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 import RootLayout from "@/components/Layouts/RootLayout";
+import { AppContext } from "@/config/app.context";
 import category from "@/utils/category";
 import { UserOutlined, StarFilled } from "@ant-design/icons";
 import { Avatar, Button, Col, Row } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useContext } from "react";
 
 const Category = ({ product }) => {
-  const router = useRouter();
+  const { builderProducts, setBuilderProducts } = useContext(AppContext);
 
-  console.log(product);
+  const handleAddToBuilder = (product) => {
+    setBuilderProducts([...builderProducts, product]);
+  };
 
   return (
     <div>
@@ -63,6 +66,7 @@ const Category = ({ product }) => {
             <Button
               className="text-orange-400"
               disabled={product.status === "Out of Stock"}
+              onClick={() => handleAddToBuilder(product)}
             >
               Add to Builder
             </Button>
