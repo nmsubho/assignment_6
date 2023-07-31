@@ -1,49 +1,20 @@
 import RootLayout from "@/components/Layouts/RootLayout";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-import { Avatar, Card, Col, Row } from "antd";
-import Link from "next/link";
-import { useRouter } from "next/router";
-const { Meta } = Card;
+import ProductCard from "@/components/ui/ProductCard";
+import { Col, Row } from "antd";
+
 
 const Product = ({ products }) => {
-  const router = useRouter();
-
   return (
     <Row gutter={16}>
       {products.map((product) => (
         <Col
-          md={8}
+          md={6}
           key={product._id}
           style={{
             padding: 10,
           }}
         >
-          <Link href={`/category/${router.query.category}/${product._id}`}>
-            <Card
-              hoverable
-              style={{
-                width: 300,
-              }}
-              cover={<img alt="example" src={product.image} />}
-              actions={[
-                <SettingOutlined key="setting" />,
-                <EditOutlined key="edit" />,
-                <EllipsisOutlined key="ellipsis" />,
-              ]}
-            >
-              <Meta
-                avatar={
-                  <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />
-                }
-                title={product.name}
-                description={product.description}
-              />
-            </Card>
-          </Link>
+          <ProductCard product={product} />
         </Col>
       ))}
     </Row>
