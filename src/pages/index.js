@@ -16,6 +16,14 @@ export default function Home({ products }) {
   ];
   return (
     <div>
+      <div className="mt-4">
+        <img
+          alt="example"
+          src="https://www.lendlease.com/contentassets/c0f564fd377d46a299346acaea847c01/1900x500_disruptivetechnology.jpg?width=300&height=400&upscale=false&mode=max&quality=80"
+          width="100%"
+        />
+      </div>
+
       <h1 className="text-5xl">Featured Products</h1>
 
       <Row gutter={16}>
