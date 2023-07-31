@@ -1,8 +1,19 @@
 import RootLayout from "@/components/Layouts/RootLayout";
 import ProductCard from "@/components/ui/ProductCard";
-import { Col, Row } from "antd";
+import category from "@/utils/category";
+import { Button, Card, Col, Row } from "antd";
+import Link from "next/link";
 
 export default function Home({ products }) {
+  const categories = [
+    "cpu",
+    "motherboard",
+    "ram",
+    "power-supply",
+    "storage",
+    "monitor",
+    "other",
+  ];
   return (
     <div>
       <h1 className="text-5xl">Featured Products</h1>
@@ -17,6 +28,32 @@ export default function Home({ products }) {
             }}
           >
             <ProductCard product={product} />
+          </Col>
+        ))}
+      </Row>
+      <h1 className="text-5xl">Featured Categories</h1>
+
+      <Row gutter={16}>
+        {categories.map((categoryId) => (
+          <Col
+            md={6}
+            key={categoryId}
+            style={{
+              padding: 10,
+            }}
+          >
+            <Card
+              hoverable
+              style={{
+                width: 300,
+              }}
+            >
+              <Link href={`/category/${categoryId}`}>
+                <p className="text-xl text-center text-black">
+                  {category(categoryId)}
+                </p>
+              </Link>
+            </Card>
           </Col>
         ))}
       </Row>
